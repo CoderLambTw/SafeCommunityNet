@@ -1,12 +1,14 @@
 package com.youngwu.safecommunitynet.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.youngwu.safecommunitynet.exception.UserNotFoundException;
 import com.youngwu.safecommunitynet.model.User;
 import com.youngwu.safecommunitynet.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author: Young.Wu
@@ -33,15 +35,24 @@ public class UserService {
 
     public void updateUser(Long id, User updatedUser) {
 
-        User user = userRepository.findById(id).get();
-
-        BeanUtil.copyProperties(updatedUser, user);
-        user.setId(id);
-
-        userRepository.save(user);
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            BeanUtil.copyProperties(updatedUser, user);
+            user.setId(id);
+            userRepository.save(user);
+        } else {
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            userRepository.deleteById(id);
+        } else {
+            throw new UserNotFoundException("User with id: " + id + " not found");
+        }
     }
 }

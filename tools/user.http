@@ -19,7 +19,7 @@ GET {{host}}/api/users/testUser
 Content-Type: application/json
 
 ###
-PUT {{host}}/api/users/1
+PUT {{host}}/api/users/99
 Content-Type: application/json
 
 {
