@@ -1,0 +1,33 @@
+@host = http://localhost:8080
+
+
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "username": "testUser1",
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+###
+GET {{host}}/api/users/all
+Content-Type: application/json
+
+###
+GET {{host}}/api/users/testUser
+Content-Type: application/json
+
+###
+PUT {{host}}/api/users/1
+Content-Type: application/json
+
+{
+  "username": "testUser3",
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+###
+DELETE {{host}}/api/users/1
+Content-Type: application/json
