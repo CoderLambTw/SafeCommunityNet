@@ -1,11 +1,11 @@
 package com.youngwu.safecommunitynet.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
 
 /**
  * @author: Young.Wu
@@ -13,7 +13,7 @@ import java.util.Date;
  * @description:
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "user_name"))
 @Getter
 @Setter
 public class User {
@@ -22,10 +22,17 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String name;
+    @Column(name = "user_name")
+    private String username;
     private String email;
     private String password;
 
-    @Column(name = "registration_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "registration_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date registrationDate;
+
+    @PrePersist
+    protected void onCreate() {
+        registrationDate = new Date();
+    }
 }
