@@ -1,6 +1,6 @@
 package com.youngwu.safecommunitynet.controller;
 
-import com.youngwu.safecommunitynet.model.User;
+import com.youngwu.safecommunitynet.model.entity.User;
 import com.youngwu.safecommunitynet.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

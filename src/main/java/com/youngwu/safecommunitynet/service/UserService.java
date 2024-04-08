@@ -2,7 +2,9 @@ package com.youngwu.safecommunitynet.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.youngwu.safecommunitynet.exception.UserNotFoundException;
-import com.youngwu.safecommunitynet.model.User;
+import com.youngwu.safecommunitynet.model.dto.UserCreateDto;
+import com.youngwu.safecommunitynet.model.dto.UserUpdatedDto;
+import com.youngwu.safecommunitynet.model.entity.User;
 import com.youngwu.safecommunitynet.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void createUser(User user) {
-        userRepository.save(user);
+    public void createUser(UserCreateDto user) {
+        User userEntity = new User();
+        BeanUtil.copyProperties(user, userEntity);
+        userRepository.save(userEntity);
     }
 
     public List<User> getAllUsers() {
@@ -34,8 +38,9 @@ public class UserService {
                              .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
     }
 
-    public void updateUser(Long id, User updatedUser) {
+    public void updateUser(UserUpdatedDto updatedUser) {
 
+        Long id = updatedUser.getId();
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();

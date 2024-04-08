@@ -1,4 +1,4 @@
-package com.youngwu.safecommunitynet.model;
+package com.youngwu.safecommunitynet.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,7 +24,9 @@ public class User {
 
     @Column(name = "user_name")
     private String username;
+
     private String email;
+
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)

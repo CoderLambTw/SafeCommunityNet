@@ -1,6 +1,6 @@
 package com.youngwu.safecommunitynet.repository;
 
-import com.youngwu.safecommunitynet.model.User;
+import com.youngwu.safecommunitynet.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

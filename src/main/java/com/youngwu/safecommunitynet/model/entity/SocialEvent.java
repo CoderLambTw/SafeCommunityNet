@@ -1,7 +1,6 @@
-package com.youngwu.safecommunitynet.model;
+package com.youngwu.safecommunitynet.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
