@@ -29,8 +29,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+    public User getUserByUserId(Long id) {
+        return userRepository.findById(id)
+                             .orElseThrow(() -> new UserNotFoundException("User with id: " + id + " not found"));
     }
 
     public void updateUser(Long id, User updatedUser) {
