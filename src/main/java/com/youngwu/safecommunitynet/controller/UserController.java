@@ -5,6 +5,8 @@ import com.youngwu.safecommunitynet.model.dto.UserUpdatedDto;
 import com.youngwu.safecommunitynet.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 @AllArgsConstructor
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
 
@@ -25,11 +28,13 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateDto user) {
         userService.createUser(user);
+        logger.info("User created successfully");
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     @GetMapping("/all")
     public ResponseEntity<?> getUsers() {
+        logger.info("Fetching all users");
         return ResponseEntity.ok(userService.getAllUsers());
     }
 

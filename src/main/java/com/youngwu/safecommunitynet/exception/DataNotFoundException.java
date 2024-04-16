@@ -5,12 +5,12 @@ package com.youngwu.safecommunitynet.exception;
  * @create-date: 2024/4/2 4:27 PM
  * @description:
  */
-public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException() {
+public class DataNotFoundException extends RuntimeException {
+    public DataNotFoundException() {
         super();
     }
 
-    public UserNotFoundException(String message) {
+    public DataNotFoundException(String message) {
         super(message);
     }
 }

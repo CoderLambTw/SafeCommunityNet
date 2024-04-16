@@ -33,9 +33,11 @@ public class SocialEvent {
     @Column(name = "event_time")
     private Time eventTime;
 
+    // 緯度
     @Column(name = "latitude")
     private Double latitude;
 
+    // 經度
     @Column(name = "longitude")
     private Double longitude;
 
