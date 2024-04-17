@@ -1,5 +1,5 @@
-server:
-  port: 9527
+#server:
+#  port: 9527
 spring:
   application:
     name: SafeCommunityNet
@@ -14,3 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+springdoc:
+  swagger-ui:
+    operations-sorter: method
